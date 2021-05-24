@@ -1,0 +1,44 @@
+using System;
+
+using static System.Random;
+
+namespace Exe1
+{
+  class Estimate_PI
+{
+    static void Main(string[] args)
+    {
+        Random ran = new Random();
+
+        double tolerance = 1e-5;
+
+        double piApproximation = 0;
+        int total = 0;
+        int numInCircle = 0;
+        double x, y;
+        while (Math.Abs(Math.PI - piApproximation) > tolerance)
+        {
+            x = ran.Next(-10,10);
+            Console.WriteLine(x);
+            y = ran.Next(-10,10);
+            Console.WriteLine(y);
+            if (x * x + y * y <= 1.0)
+            {
+                ++numInCircle;
+            }
+            ++total;
+            piApproximation = 4.0 * (numInCircle / (double)total);
+        }
+
+        Console.WriteLine();
+
+        Console.WriteLine("Pi calculated to within {0} digits with {1} random points.",
+          -Math.Log10(tolerance), total);
+        Console.WriteLine("Approximated Pi = {0}", piApproximation);
+
+        Console.WriteLine();
+        Console.WriteLine("Press Enter Key");
+        Console.Read();
+    }
+} 
+}
